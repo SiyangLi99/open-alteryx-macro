@@ -13,7 +13,8 @@ two_years_ago=$(date -d"2 years ago" +%s)
 commit_messages=("Initial commit" "Update" "Fix bug" "Refactor code" "Add new feature" "Improve performance" "Update documentation")
 
 # Iterate over each directory, excluding .git
-find . -type d -not -path './.git*' | while read dir; do
+find . -maxdepth 2 -type d -not -path './.git*' -not -path '.' | while read dir; do
+
   # Create a new file in the directory
   file="$dir/new_file_$(date +%N).txt"
   echo "This is a new file." > "$file"
